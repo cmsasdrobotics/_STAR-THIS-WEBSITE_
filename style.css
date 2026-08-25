@@ -1,5 +1,8 @@
 body {
     color: #ffffff;
-    background-color: #333337;
+    background-color: #111115;
     font-family: cursive;
 }
+
+.subtitle { color: red; }
+#page-title { font-size: 48px; color: navy; }
