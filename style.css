@@ -4,6 +4,9 @@ body {
     font-family: cursive;
 }
 
-.subtitle { color: springgreen; }
+.subtitle {
+    color: springgreen;
+    border: 2px solid black;
+}
 #page-title { font-size: 40px; color: lightgreen; }
 .html-link { color: lavender; }
