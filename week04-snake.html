@@ -15,16 +15,11 @@
     var snake = { x: 0, y: 200 };
     var dx = 20;
     var dy = 0;
+    var body = [];        // every square the snake is made of
+    var snakeLength = 3;  // how long it is supposed to be
+    var apple = { x: 200, y: 200 };
  
-    function drawBoard() {
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, 400, 400);
-     
-      ctx.fillStyle = "#3ddc84";
-      ctx.fillRect(snake.x, snake.y, 20, 20);
-    }
- 
-    setInterval(step, 100);
+    var timer = setInterval(step, 100);   // was: setInterval(step, 100);
     
     function step() {
       snake.x = snake.x + dx;
@@ -34,7 +29,39 @@
       if (snake.x < 0) { snake.x = 380; }
       if (snake.y > 380) { snake.y = 0; }
       if (snake.y < 0) { snake.y = 380; }
-     
+
+      for (var i = 0; i < body.length; i++) {
+        if (body[i].x === snake.x && body[i].y === snake.y) {
+          clearInterval(timer);
+          alert("Game over");
+          return;
+        }
+      }
+
+      
+      body.push({ x: snake.x, y: snake.y });
+ 
+      while (body.length > snakeLength) {
+        body.shift();
+      }
+
+      function drawBoard() {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, 400, 400);
+ 
+        ctx.fillStyle = "#3ddc84";
+        for (var i = 0; i < body.length; i++) {
+          ctx.fillRect(body[i].x, body[i].y, 20, 20);
+        }
+        ctx.fillStyle = "red";
+        ctx.fillRect(apple.x, apple.y, 20, 20);
+        if (snake.x === apple.x && snake.y === apple.y) {
+        snakeLength = snakeLength + 1;
+        apple.x = Math.floor(Math.random() * 20) * 20;
+        apple.y = Math.floor(Math.random() * 20) * 20;
+      }
+
+      }
       drawBoard();
     }
 
