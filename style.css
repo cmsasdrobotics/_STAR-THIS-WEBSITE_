@@ -16,3 +16,4 @@ body {
 .html-link { color: lavender; }
 .fact { color: palegreen; }
 .colorButton { text-align: center;}
+.center { margin: auto; }
